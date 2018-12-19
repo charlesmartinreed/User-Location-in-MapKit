@@ -40,17 +40,33 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LxQ-27-Vhs" customClass="GoButton" customModule="User_Location" customModuleProvider="target">
+                                <rect key="frame" x="310" y="708" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="MHX-Xu-jUr"/>
+                                    <constraint firstAttribute="height" constant="80" id="UM2-k5-Kqi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Go!">
+                                    <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="goButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CTs-QQ-snE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="5vZ-f0-ZVS" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="9Lg-mo-Di0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fCT-fG-rkn" secondAttribute="bottom" id="EQx-tU-uid"/>
                             <constraint firstAttribute="trailing" secondItem="5vZ-f0-ZVS" secondAttribute="trailing" id="HAU-7Y-pjx"/>
+                            <constraint firstItem="5vZ-f0-ZVS" firstAttribute="top" secondItem="LxQ-27-Vhs" secondAttribute="bottom" constant="24" id="Nfa-fM-uoD"/>
                             <constraint firstAttribute="trailing" secondItem="fCT-fG-rkn" secondAttribute="trailing" id="PlA-sU-Gq3"/>
                             <constraint firstItem="5vZ-f0-ZVS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TsV-ba-pTm"/>
                             <constraint firstItem="3xg-ru-NBO" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-20" id="c5q-kM-Rd7"/>
                             <constraint firstItem="fCT-fG-rkn" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="cnO-r6-BJo"/>
                             <constraint firstItem="3xg-ru-NBO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="goi-JC-4Ie"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LxQ-27-Vhs" secondAttribute="trailing" constant="24" id="nGM-PF-B7C"/>
                             <constraint firstItem="fCT-fG-rkn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="p5y-0W-LjP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -62,7 +78,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-288.40579710144931" y="-19.419642857142858"/>
+            <point key="canvasLocation" x="-1283" y="-252"/>
         </scene>
     </scenes>
     <resources>

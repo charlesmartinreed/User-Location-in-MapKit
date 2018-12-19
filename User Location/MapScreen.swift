@@ -15,11 +15,17 @@ class MapScreen: UIViewController {
     //MARK:- @IBOutlets
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var addressLabel: UILabel!
+    //@IBOutlet weak var goButtonTrailingConstraint: NSLayoutConstraint!
+    
     
     //MARK:- Instance properties
     let locationManager = CLLocationManager()
     let regionInMeters: Double = 10000
     var previousLocation: CLLocation?
+    var buttonConstraint = NSLayoutConstraint()
+    let geoCoder = CLGeocoder()
+    var directionsArray = [MKDirections]()
+    //var goButtonIsVisible = false
     
     
     override func viewDidLoad() {
@@ -91,6 +97,87 @@ class MapScreen: UIViewController {
         }
     }
     
+    //MARK:- Methods for getting directions
+    func getDirections() {
+        //from current location to selected
+        guard let location = locationManager.location?.coordinate else { return }
+        
+        //using a helper function for the request due to length
+        let request = createDirectionsRequest(from: location)
+        
+        //now, let's use our directions
+        let directions = MKDirections(request: request)
+        
+        //this is called when this method is, which is called when the Go button is tapped
+        resetMapView(withNew: directions)
+        
+        //calculate the directions
+        directions.calculate { (response, error) in
+            if let err = error {
+                //obviously not production level error handling haha
+                print("Unable to calculate directions", err.localizedDescription)
+            }
+            
+            guard let response = response else { return } //create an alert if not
+            
+            //show the route geometry by animating transition to new map rect - boundingMapRect means the map rect displays entire rect
+            for route in response.routes {
+                //let steps = route.steps //these are the building blocks we use to do step by step directions
+                self.mapView.addOverlay(route.polyline)
+                self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+            }
+        }
+    }
+    
+    func createDirectionsRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request {
+        //MKDirections.Request needs a source and destination
+        
+        //destination is the point the user dragged to, which we're placing at center of map
+        let destinationCoordinate = getCenterLocation(for: mapView).coordinate
+        //the location we passed in when calling the method
+        let startingLocation = MKPlacemark(coordinate: coordinate)
+        //the location we just created
+        let destination = MKPlacemark(coordinate: destinationCoordinate)
+        
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: startingLocation)
+        request.destination = MKMapItem(placemark: destination)
+        request.transportType = .automobile //optional, but we're using this for testing
+        request.requestsAlternateRoutes = true
+        
+        return request
+    }
+    
+    func resetMapView(withNew directions: MKDirections) {
+        //add directions to array, use map() to run the cancel() on the item
+        mapView.removeOverlays(mapView.overlays)
+        directionsArray.append(directions)
+        let _ = directionsArray.map {
+            for (index, value) in directionsArray.enumerated() {
+                $0.cancel() //cancels PENDING requests, won't return diretions we want
+                directionsArray.remove(at: index)
+            }
+        }
+    }
+    
+    //MARK:- @IBActions
+    @IBAction func goButtonTapped(_ sender: UIButton) {
+        getDirections()
+    }
+    
+//    func animateGoButton() {
+//
+//        if goButtonIsVisible {
+//            goButtonTrailingConstraint.constant = 0
+//        } else {
+//            goButtonTrailingConstraint.constant = -80
+//        }
+//
+//        UIView.animate(withDuration: 0.5) {
+//            self.view.layoutIfNeeded()
+//        }
+//    }
+    
 
 }
 
@@ -144,5 +231,12 @@ extension MapScreen: MKMapViewDelegate {
                 self.addressLabel.text = "\(streetNumber) \(streetName)"
             }
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+        renderer.strokeColor = .blue
+        
+        return renderer
     }
 }

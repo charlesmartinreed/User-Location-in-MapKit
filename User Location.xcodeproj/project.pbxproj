@@ -12,6 +12,8 @@
 		8C7DB4C121C98E8B00667077 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C7DB4BF21C98E8B00667077 /* Main.storyboard */; };
 		8C7DB4C321C98E8E00667077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C7DB4C221C98E8E00667077 /* Assets.xcassets */; };
 		8C7DB4C621C98E8E00667077 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C7DB4C421C98E8E00667077 /* LaunchScreen.storyboard */; };
+		8C7DB4CE21C9B98C00667077 /* GoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7DB4CD21C9B98C00667077 /* GoButton.swift */; };
+		8C7DB4D021C9BA8F00667077 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7DB4CF21C9BA8F00667077 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		8C7DB4C221C98E8E00667077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C7DB4C521C98E8E00667077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C7DB4C721C98E8E00667077 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C7DB4CD21C9B98C00667077 /* GoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoButton.swift; sourceTree = "<group>"; };
+		8C7DB4CF21C9BA8F00667077 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				8C7DB4C221C98E8E00667077 /* Assets.xcassets */,
 				8C7DB4C421C98E8E00667077 /* LaunchScreen.storyboard */,
 				8C7DB4C721C98E8E00667077 /* Info.plist */,
+				8C7DB4CD21C9B98C00667077 /* GoButton.swift */,
+				8C7DB4CF21C9BA8F00667077 /* Colors.swift */,
 			);
 			path = "User Location";
 			sourceTree = "<group>";
@@ -136,6 +142,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C7DB4BE21C98E8B00667077 /* MapScreen.swift in Sources */,
+				8C7DB4D021C9BA8F00667077 /* Colors.swift in Sources */,
+				8C7DB4CE21C9B98C00667077 /* GoButton.swift in Sources */,
 				8C7DB4BC21C98E8B00667077 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
